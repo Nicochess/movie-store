@@ -24,6 +24,11 @@
   background: #8dd7cf;
 }
 
+.header a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .header__title {
   color: #fff;
 }
@@ -84,7 +89,6 @@
 
 .header .menu-item {
   font-size: 24px;
-  color: #fff;
   cursor: pointer;
 }
 

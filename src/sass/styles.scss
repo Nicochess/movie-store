@@ -18,6 +18,11 @@
     padding: 10px;
     background: #8dd7cf;
 
+    a {
+        color: $full-white;
+        text-decoration: none;
+    }
+
     &__title {
         color: $full-white;
     }
@@ -65,7 +70,6 @@
 
     .menu-item {
         font-size: 24px;
-        color: $full-white;
         cursor: pointer;
     }
 }

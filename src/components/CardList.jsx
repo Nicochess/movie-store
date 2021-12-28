@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import FavoritesContext from "../context/favorites-context";
 import Card from "./Card";
 
 const CardList = ({ movies }) => {
-  const [genre, setGenre] = useState([]);
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_KEY}&language=pt-BR`
-      );
-      const data = await res.json();
-      setGenre(data.genres)
-    };
-
-    fetchGenres()
-  }, []);
+  const favoriteCtx = useContext(FavoritesContext);
+  console.log(favoriteCtx.genres)
 
   return (
     <main className="movies__grid">
@@ -27,7 +17,7 @@ const CardList = ({ movies }) => {
             image={movies.poster_path}
             rating={movies.vote_average}
             genreList={movies.genre_ids}
-            genre={genre}
+            genre={favoriteCtx.genres}
             date={movies.release_date}
           />
         );

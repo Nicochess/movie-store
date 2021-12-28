@@ -1,14 +1,33 @@
+import { useContext } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
+import FavoriteContext from "../context/favorites-context";
 
 const Card = ({ title, rating, image, id, genre, genreList, date }) => {
+  const favoriteCtx = useContext(FavoriteContext);
+
+  const isFavorite = favoriteCtx.toggleFavorite(id);
+
+  const toggleStatusFavorite = () => {
+    if (isFavorite) {
+      favoriteCtx.removeFavorite(id);
+    } else {
+      favoriteCtx.addFavorite({
+        id: id,
+        title: title,
+        vote_average: rating,
+        genre_ids: genreList,
+        poster_path: image,
+        release_date: date,
+      });
+    }
+  };
+
+  console.log(genre)
+
   const imageBase = "https://image.tmdb.org/t/p/w500/";
 
-  const genreName = genre.filter((gen) => {
-    return gen.id === genreList[0]
-  })
-
   const dateBuilder = (d) => {
-    let [year, month, day] = d.split("-");
+    const [year, month, day] = d.split("-");
 
     let months = [
       "janeiro",
@@ -38,6 +57,10 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
     }
   );
 
+  const genreName = genre.filter((gen) => {
+    return gen.id === genreList[0]
+  });
+
   return (
     <article className="card" key={id}>
       <section className="card__image">
@@ -52,7 +75,7 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
             <span className="star">
               <FaStar />
             </span>
-            {rating.toFixed(0)}
+            {rating}
           </p>
           <p className="details__genre">{genreName[0].name}</p>
         </div>
@@ -61,7 +84,7 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
 
       <section className="card__actions">
         <button className="buy">Adicionar</button>
-        <button className="favorite">
+        <button className="favorite" onClick={toggleStatusFavorite}>
           <FaHeart />
         </button>
       </section>
