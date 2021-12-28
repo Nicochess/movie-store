@@ -112,8 +112,6 @@
 
 .card__image img {
   width: 100%;
-  min-height: 330px;
-  max-height: 500px;
   -o-object-fit: cover;
      object-fit: cover;
   border-bottom: 2px solid #b9c4ce;
@@ -126,12 +124,12 @@
   width: 100%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  bottom: 10px;
+  bottom: 9px;
   color: white;
-  font-size: 12px;
+  font-size: 11px;
   background: #0000003d;
+  font-weight: 500;
   padding: 5px;
-  border-radius: 5px;
 }
 
 .card__content {
@@ -190,7 +188,7 @@
 }
 
 .card__content .details__genre {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .card__content .price {
@@ -226,12 +224,14 @@
   font-size: 22px;
   background: none;
   border: none;
-  color: #4b5c6b;
+  color: #a1a1a1;
+  -webkit-filter: drop-shadow(0 0 2px black);
+          filter: drop-shadow(0 0 2px black);
   cursor: pointer;
 }
 
 .card__actions .favorite:hover {
-  color: red;
+  color: #e61f1f;
 }
 
 .load {
@@ -282,6 +282,9 @@
         grid-template-columns: repeat(4, minmax(200px, 220px));
     gap: 30px 40px;
     margin: 20px auto;
+  }
+  .card__image img {
+    min-height: 330px;
   }
 }
 /*# sourceMappingURL=styles.css.map */

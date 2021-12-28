@@ -88,8 +88,6 @@
 
         img {
             width: 100%;
-            min-height: 330px;
-            max-height: 500px;
             object-fit: cover;
             border-bottom: 2px solid #b9c4ce;
         }
@@ -100,12 +98,12 @@
             text-align: center;
             width: 100%;
             transform: translateX(-50%);
-            bottom: 10px;
+            bottom: 9px;
             color: white;
-            font-size: 12px;
+            font-size: 11px;
             background: #0000003d;
+            font-weight: 500;
             padding: 5px;
-            border-radius: 5px;
         }
     }
 
@@ -143,7 +141,7 @@
         }
 
         .details__genre {
-            font-size: 18px;
+            font-size: 14px;
         }
 
         .price {
@@ -179,11 +177,12 @@
             font-size: 22px;
             background: none;
             border: none;
-            color: #4b5c6b;
+            color: #a1a1a1;
+            filter: drop-shadow(0 0 2px rgb(0, 0, 0));
             cursor: pointer;
 
             &:hover {
-                color: red;
+                color: #e61f1f;
             }
         }
     }
@@ -232,5 +231,13 @@
         grid-template-columns: repeat(4, minmax(200px, 220px));
         gap: 30px 40px;
         margin: 20px auto;
+    }
+
+    .card {
+        &__image {
+            img {
+                min-height: 330px;
+            }
+        }
     }
 }

@@ -1,13 +1,14 @@
 import { FaHeart, FaStar } from "react-icons/fa";
 
-const Card = ({ title, rating, image, id, genre, date }) => {
+const Card = ({ title, rating, image, id, genre, genreList, date }) => {
   const imageBase = "https://image.tmdb.org/t/p/w500/";
 
-  
+  const genreName = genre.filter((gen) => {
+    return gen.id === genreList[0]
+  })
 
   const dateBuilder = (d) => {
-
-    let [year, month, day] = d.split('-')
+    let [year, month, day] = d.split("-");
 
     let months = [
       "janeiro",
@@ -24,11 +25,9 @@ const Card = ({ title, rating, image, id, genre, date }) => {
       "dezembro ",
     ];
 
-    
     let monthString = months[month - 1];
 
-    return `${day} de ${monthString}, ${year}`
-
+    return `${day} de ${monthString}, ${year}`;
   };
 
   const randomPrice = (Math.floor(Math.random() * 100) + 20).toLocaleString(
@@ -43,7 +42,7 @@ const Card = ({ title, rating, image, id, genre, date }) => {
     <article className="card" key={id}>
       <section className="card__image">
         <img src={imageBase + image} alt="" />
-        <date className="date">{dateBuilder(date)}</date>
+        <span className="date">{dateBuilder(date)}</span>
       </section>
       <section className="card__content">
         <h3 className="title">{title}</h3>
@@ -55,7 +54,7 @@ const Card = ({ title, rating, image, id, genre, date }) => {
             </span>
             {rating.toFixed(0)}
           </p>
-          <p className="details__genre">Ação</p>
+          <p className="details__genre">{genreName[0].name}</p>
         </div>
         <p className="price">{randomPrice}</p>
       </section>
