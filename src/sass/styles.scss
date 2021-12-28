@@ -11,11 +11,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    width: 100vw;
-}
-
 .header {
     display: flex;
     flex-direction: column;
@@ -71,6 +66,7 @@ body {
     .menu-item {
         font-size: 24px;
         color: $full-white;
+        cursor: pointer;
     }
 }
 
@@ -78,6 +74,7 @@ body {
     display: grid;
     justify-content: center;
     padding: 10px;
+    margin: 20px 0;
     gap: 20px;
     grid-template-columns: 85%;
 }
@@ -90,7 +87,9 @@ body {
 
         img {
             width: 100%;
+            min-height: 330px;
             max-height: 500px;
+            object-fit: cover;
             border-bottom: 2px solid #b9c4ce;
         }
     }
@@ -147,9 +146,15 @@ body {
             font-size: 16px;
             background: #6558f5;
             color: $full-white;
-            border-radius: 5px;
+            border-radius: 3px;
             border: 0;
             box-shadow: 0 0 0 4.5px #6558f5;
+            cursor: pointer;
+
+            &:hover {
+                background: darken(#6558f5, 15%);
+                box-shadow: 0 0 0 4.5px darken(#6558f5, 15%);
+            }
         }
 
         .favorite {
@@ -160,6 +165,11 @@ body {
             background: none;
             border: none;
             color: #4b5c6b;
+            cursor: pointer;
+
+            &:hover {
+                color: red;
+            }
         }
     }
 }
@@ -173,6 +183,7 @@ body {
     font-weight: 500;
     border: 0;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px){
@@ -182,10 +193,29 @@ body {
 }
 
 @media screen and (min-width: 1024px){
+    .header {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+
+        &__search {
+            margin: 0;
+            max-width: 500px;
+        }
+
+        &__menu {
+            width: auto;
+        }
+
+        .menu {
+            gap: 20px;
+        }
+    }
+    
     .movies__grid {
-        max-width: 1100px;
-        grid-template-columns: repeat(4, 23%);
+        grid-template-columns: repeat(4, minmax(200px, 220px));
         gap: 30px 40px;
-        margin: 0 auto;
+        margin: 20px auto;
     }
 }

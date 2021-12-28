@@ -36,6 +36,8 @@ function App() {
     fetchMovies(page);
   }, [page]);
 
+  console.log(movies)
+
   const loadMore = () => {
     setPage(page + 1);
   };

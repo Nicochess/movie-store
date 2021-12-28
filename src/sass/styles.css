@@ -9,11 +9,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  width: 100vw;
-}
-
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -90,6 +85,7 @@ body {
 .header .menu-item {
   font-size: 24px;
   color: #fff;
+  cursor: pointer;
 }
 
 .movies__grid {
@@ -99,6 +95,7 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 10px;
+  margin: 20px 0;
   gap: 20px;
   -ms-grid-columns: 85%;
       grid-template-columns: 85%;
@@ -111,7 +108,10 @@ body {
 
 .card__image img {
   width: 100%;
+  min-height: 330px;
   max-height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-bottom: 2px solid #b9c4ce;
 }
 
@@ -187,10 +187,17 @@ body {
   font-size: 16px;
   background: #6558f5;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 0;
   -webkit-box-shadow: 0 0 0 4.5px #6558f5;
           box-shadow: 0 0 0 4.5px #6558f5;
+  cursor: pointer;
+}
+
+.card__actions .buy:hover {
+  background: #2210f1;
+  -webkit-box-shadow: 0 0 0 4.5px #2210f1;
+          box-shadow: 0 0 0 4.5px #2210f1;
 }
 
 .card__actions .favorite {
@@ -201,6 +208,11 @@ body {
   background: none;
   border: none;
   color: #4b5c6b;
+  cursor: pointer;
+}
+
+.card__actions .favorite:hover {
+  color: red;
 }
 
 .load {
@@ -214,6 +226,7 @@ body {
   font-weight: 500;
   border: 0;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -224,12 +237,32 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
+  .header {
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 10px 20px;
+  }
+  .header__search {
+    margin: 0;
+    max-width: 500px;
+  }
+  .header__menu {
+    width: auto;
+  }
+  .header .menu {
+    gap: 20px;
+  }
   .movies__grid {
-    max-width: 1100px;
-    -ms-grid-columns: (23%)[4];
-        grid-template-columns: repeat(4, 23%);
+    -ms-grid-columns: (minmax(200px, 220px))[4];
+        grid-template-columns: repeat(4, minmax(200px, 220px));
     gap: 30px 40px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
 }
 /*# sourceMappingURL=styles.css.map */
