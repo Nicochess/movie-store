@@ -64,6 +64,7 @@ function App() {
               image={movies.poster_path}
               genre={movies.genre_id}
               rating={movies.vote_average}
+              date={movies.release_date}
             />
           );
         })}
