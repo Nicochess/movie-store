@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap');
+
+@import 'variables';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: #8dd7cf;
+
+    &__title {
+        color: $full-white;
+    }
+
+    &__search,
+    &__menu {
+        width: 100%;
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+    }
+
+    .search-bar {
+        width: 90%;
+        height: 40px;
+        border: 2px solid #95c1c4;
+        border-radius: 5px 0 0 5px;
+        border-right: none;
+        padding: 10px;
+        outline: none;
+    }
+
+    .search-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 10%;
+        font-size: 20px;
+        background: $full-white;
+        border-radius: 0 5px 5px 0;
+        border: 2px solid #95c1c4;
+        border-left: none;
+        color: $light-black;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        list-style: none;
+    }
+
+    .menu-item {
+        font-size: 24px;
+        color: $full-white;
+    }
+}
+
+.movies__grid {
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+    grid-template-columns: 85%;
+}
+
+.card {
+    position: relative;
+    border: 2px solid #b9c4ce;
+    
+    &__image {
+
+        img {
+            width: 100%;
+            max-height: 500px;
+            border-bottom: 2px solid #b9c4ce;
+        }
+    }
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 10px;
+
+        .title {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0 0 10px;
+            color: #3d4a56;
+        }
+
+        .details {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        .details__rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            gap: 5px;
+            line-height: 15px;
+        }
+
+        .details__genre {
+            font-size: 18px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 10px 0;
+            color: #293845;
+        }
+    }
+
+    &__actions {
+        .buy {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+            background: #6558f5;
+            color: $full-white;
+            border-radius: 5px;
+            border: 0;
+            box-shadow: 0 0 0 4.5px #6558f5;
+        }
+
+        .favorite {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 22px;
+            background: none;
+            border: none;
+            color: #4b5c6b;
+        }
+    }
+}
+
+.load {
+    display: flex;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background: green;
+    color: $full-white;
+    font-weight: 500;
+    border: 0;
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 768px){
+    .movies__grid{
+        grid-template-columns: repeat(3, 31%);
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .movies__grid {
+        max-width: 1100px;
+        grid-template-columns: repeat(4, 23%);
+        gap: 30px 40px;
+        margin: 0 auto;
+    }
+}
