@@ -101,13 +101,15 @@
   padding: 10px;
   margin: 20px 0;
   gap: 20px;
-  -ms-grid-columns: 85%;
-      grid-template-columns: 85%;
+  -ms-grid-columns: 80%;
+      grid-template-columns: 80%;
 }
 
 .card {
   position: relative;
   border: 2px solid #b9c4ce;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .card__image {
@@ -160,6 +162,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0 0 10px;
+  font-size: 16px;
   color: #3d4a56;
 }
 
@@ -223,15 +226,15 @@
 
 .card__actions .favorite {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 22px;
-  background: none;
+  top: 0px;
+  right: 0px;
+  font-size: 18px;
+  background: #b9c4ce;
   border: none;
-  color: #a1a1a1;
-  -webkit-filter: drop-shadow(0 0 2px black);
-          filter: drop-shadow(0 0 2px black);
+  color: white;
   cursor: pointer;
+  padding: 5px 5px 5px 10px;
+  border-radius: 0 0 0px 30px;
 }
 
 .card__actions .favorite.active {
@@ -247,7 +250,7 @@
   display: -ms-flexbox;
   display: flex;
   margin: 20px auto;
-  padding: 10px 15px;
+  padding: 10px 30px;
   background: green;
   color: #fff;
   font-weight: 500;
@@ -261,10 +264,17 @@
     -ms-grid-columns: (31%)[3];
         grid-template-columns: repeat(3, 31%);
   }
+  .card__image img {
+    height: 330px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     width: 100%;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;

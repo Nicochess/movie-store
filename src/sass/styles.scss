@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap");
-
 @import "variables";
 
 *,
@@ -8,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: $font-stack;
 }
 
 .header {
@@ -16,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background: #8dd7cf;
+    background: $header-color;
 
     a {
         color: $full-white;
@@ -80,12 +78,13 @@
     padding: 10px;
     margin: 20px 0;
     gap: 20px;
-    grid-template-columns: 85%;
+    grid-template-columns: 80%;
 }
 
 .card {
     position: relative;
-    border: 2px solid #b9c4ce;
+    border: 2px solid $card-border-color;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
     &__image {
         position: relative;
@@ -93,7 +92,7 @@
         img {
             width: 100%;
             object-fit: cover;
-            border-bottom: 2px solid #b9c4ce;
+            border-bottom: 2px solid $card-border-color;
         }
 
         .date {
@@ -125,6 +124,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             margin: 0 0 10px;
+            font-size: 16px;
             color: #3d4a56;
         }
 
@@ -176,21 +176,22 @@
 
         .favorite {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 22px;
-            background: none;
+            top: 0px;
+            right: 0px;
+            font-size: 18px;
+            background: $card-border-color;
             border: none;
-            color: #a1a1a1;
-            filter: drop-shadow(0 0 2px rgb(0, 0, 0));
+            color: white;
             cursor: pointer;
+            padding: 5px 5px 5px 10px;
+            border-radius: 0 0 0px 30px;
 
             &.active {
-                color: #e61f1f;
+                color: $favorite-active-color;
             }
 
             &:hover {
-                color: #e61f1f;
+                color: $favorite-active-color;
             }
         }
     }
@@ -199,7 +200,7 @@
 .load {
     display: flex;
     margin: 20px auto;
-    padding: 10px 15px;
+    padding: 10px 30px;
     background: green;
     color: $full-white;
     font-weight: 500;
@@ -212,10 +213,21 @@
     .movies__grid {
         grid-template-columns: repeat(3, 31%);
     }
+
+    .card {
+        &__image {
+            img {
+                height: 330px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 1024px) {
     .header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
         width: 100%;
         flex-direction: row;
         justify-content: space-between;

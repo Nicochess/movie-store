@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="header">
       <NavLink to='/movie-store'>
-        <h1 className="header__title">Pro Filmes</h1>
+        <h1 className="header__title">Movie Store</h1>
       </NavLink>
       <section className="header__search">
         <input type="text" className="search-bar" placeholder="Pesquisa..." />
