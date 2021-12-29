@@ -234,6 +234,10 @@
   cursor: pointer;
 }
 
+.card__actions .favorite.active {
+  color: #e61f1f;
+}
+
 .card__actions .favorite:hover {
   color: #e61f1f;
 }

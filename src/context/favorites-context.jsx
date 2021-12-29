@@ -1,13 +1,11 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 const FavoritesContext = createContext({
   favorites: [],
-  genres: [],
   totalFavorites: 0,
   addFavorite: (newFavorite) => {},
   removeFavorite: (favoriteId) => {},
   toggleFavorite: (favoriteId) => {},
-  getGenre: (genre) => {},
 });
 
 export const FavoritesContextProvider = ({ children }) => {
@@ -15,24 +13,6 @@ export const FavoritesContextProvider = ({ children }) => {
     const dataLocal = JSON.parse(localStorage.getItem("favorites")) || [];
     return dataLocal;
   });
-
-  const [genre, setGenre] = useState([]);
-
-  const fetchGenres = async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_KEY}&language=pt-BR`
-    );
-    const data = await res.json();
-    setGenre(data.genres);
-  };
-
-  useEffect(() => {
-
-    fetchGenres();
-    return () => {
-      setGenre();
-    };
-  }, []);
 
   const addFavoriteHandler = (newFavorite) => {
     setUserFavorites((prevFavorites) => {
@@ -56,7 +36,6 @@ export const FavoritesContextProvider = ({ children }) => {
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,
     toggleFavorite: toggleFavoriteHandler,
-    genres: genre,
   };
 
   return (

@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
 import FavoriteContext from "../context/favorites-context";
 
-const Card = ({ title, rating, image, id, genre, genreList, date }) => {
+const Card = ({ title, rating, image, id, date }) => {
   const favoriteCtx = useContext(FavoriteContext);
 
   const isFavorite = favoriteCtx.toggleFavorite(id);
-
+  
   const toggleStatusFavorite = () => {
     if (isFavorite) {
       favoriteCtx.removeFavorite(id);
@@ -15,14 +15,11 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
         id: id,
         title: title,
         vote_average: rating,
-        genre_ids: genreList,
         poster_path: image,
         release_date: date,
       });
     }
   };
-
-  console.log(genre)
 
   const imageBase = "https://image.tmdb.org/t/p/w500/";
 
@@ -57,10 +54,6 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
     }
   );
 
-  const genreName = genre.filter((gen) => {
-    return gen.id === genreList[0]
-  });
-
   return (
     <article className="card" key={id}>
       <section className="card__image">
@@ -77,14 +70,17 @@ const Card = ({ title, rating, image, id, genre, genreList, date }) => {
             </span>
             {rating}
           </p>
-          <p className="details__genre">{genreName[0].name}</p>
+          <p className="details__genre">Ação</p>
         </div>
         <p className="price">{randomPrice}</p>
       </section>
 
       <section className="card__actions">
         <button className="buy">Adicionar</button>
-        <button className="favorite" onClick={toggleStatusFavorite}>
+        <button
+          className={isFavorite ? "favorite active" : "favorite"}
+          onClick={toggleStatusFavorite}
+        >
           <FaHeart />
         </button>
       </section>
