@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
 import FavoriteContext from "../context/favorites-context";
 
-const Card = ({ title, rating, image, id, date }) => {
+const Card = ({ title, rating, image, id, date, genres, genreList }) => {
   const favoriteCtx = useContext(FavoriteContext);
 
   const isFavorite = favoriteCtx.toggleFavorite(id);
-  
+
   const toggleStatusFavorite = () => {
     if (isFavorite) {
       favoriteCtx.removeFavorite(id);
@@ -17,9 +17,16 @@ const Card = ({ title, rating, image, id, date }) => {
         vote_average: rating,
         poster_path: image,
         release_date: date,
+        genre_ids: genreList,
       });
     }
   };
+
+  let genreCode = genreList[0];
+
+  const genreName = genres.filter((gen) => {
+    return gen.id === genreCode;
+  });
 
   const imageBase = "https://image.tmdb.org/t/p/w500/";
 
@@ -41,18 +48,13 @@ const Card = ({ title, rating, image, id, date }) => {
       "dezembro ",
     ];
 
-    let monthString = months[month - 1];
-
-    return `${day} de ${monthString}, ${year}`;
+    return `${day} de ${months[month - 1]}, ${year}`;
   };
 
-  const randomPrice = (Math.floor(Math.random() * 100) + 20).toLocaleString(
-    "pt-br",
-    {
-      style: "currency",
-      currency: "BRL",
-    }
-  );
+  const randomPrice = Number(String(id).slice(0, 2)).toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   return (
     <article className="card" key={id}>
@@ -70,7 +72,7 @@ const Card = ({ title, rating, image, id, date }) => {
             </span>
             {rating}
           </p>
-          <p className="details__genre">Ação</p>
+          <p className="details__genre">{genreName[0].name}</p>
         </div>
         <p className="price">{randomPrice}</p>
       </section>
