@@ -1,5 +1,4 @@
-import NavBar from "./NavBar";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
@@ -14,7 +13,20 @@ const Header = () => {
           <FaSearch />
         </button>
       </section>
-      <NavBar />
+      <nav className="header__menu">
+      <ul className="menu">
+        <li className="menu-item">
+          <NavLink to="/movie-store/favorites">
+            <FaHeart />
+          </NavLink>
+        </li>
+        <li className="menu-item">
+          <NavLink to=''>
+            <FaShoppingCart />
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
     </header>
   );
 };

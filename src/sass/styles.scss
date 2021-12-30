@@ -9,6 +9,10 @@
     font-family: $font-stack;
 }
 
+button {
+    cursor: pointer;
+}
+
 .header {
     display: flex;
     flex-direction: column;
@@ -39,7 +43,7 @@
     .search-bar {
         width: 90%;
         height: 40px;
-        border: 2px solid #95c1c4;
+        border: 2px solid $searchbar-color;
         border-radius: 5px 0 0 5px;
         border-right: none;
         padding: 10px;
@@ -55,7 +59,7 @@
         font-size: 20px;
         background: $full-white;
         border-radius: 0 5px 5px 0;
-        border: 2px solid #95c1c4;
+        border: 2px solid $searchbar-color;
         border-left: none;
         color: $light-black;
     }
@@ -161,17 +165,11 @@
             width: 100%;
             padding: 5px;
             font-size: 16px;
-            background: #6558f5;
+            background: $addtocart-color;
             color: $full-white;
             border-radius: 3px;
             border: 0;
-            box-shadow: 0 0 0 4.5px #6558f5;
-            cursor: pointer;
-
-            &:hover {
-                background: darken(#6558f5, 15%);
-                box-shadow: 0 0 0 4.5px darken(#6558f5, 15%);
-            }
+            box-shadow: 0 0 0 4.5px $addtocart-color;
         }
 
         .favorite {
@@ -181,16 +179,11 @@
             font-size: 18px;
             background: $card-border-color;
             border: none;
-            color: white;
-            cursor: pointer;
+            color: $full-white;
             padding: 5px 5px 5px 10px;
             border-radius: 0 0 0px 30px;
 
             &.active {
-                color: $favorite-active-color;
-            }
-
-            &:hover {
                 color: $favorite-active-color;
             }
         }
@@ -201,7 +194,7 @@
     display: flex;
     margin: 20px auto;
     padding: 10px 30px;
-    background: green;
+    background: $load-color;
     color: $full-white;
     font-weight: 500;
     border: 0;
@@ -257,6 +250,21 @@
         &__image {
             img {
                 min-height: 330px;
+            }
+        }
+
+        &__actions {
+            .buy {
+                &:hover {
+                    background: darken($addtocart-color, 15%);
+                    box-shadow: 0 0 0 4.5px darken($addtocart-color, 15%);
+                }
+            }
+
+            .favorite {
+                &:hover {
+                    color: $favorite-active-color;
+                }
             }
         }
     }

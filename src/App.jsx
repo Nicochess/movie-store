@@ -12,19 +12,10 @@ export const api = {
 
 function App() {
   const favoritesCtx = useContext(FavoritesContext);
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favoritesCtx.favorites));
-  }, [favoritesCtx.favorites]);
-
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-
-  const loadMore = () => {
-    setPage(page + 1);
-  };
 
   const fetchApi = async (page) => {
     const movieData = `${api.base}/movie/popular?api_key=${api.key}&language=pt-BR&page=${page}&with_genres=true`;
@@ -32,6 +23,7 @@ function App() {
 
     const getMovieData = axios.get(movieData);
     const getGenreData = axios.get(genreData);
+
     axios.all([getMovieData, getGenreData]).then(
       axios.spread((...allData) => {
         const allMovie = allData[0];
@@ -49,8 +41,16 @@ function App() {
   };
 
   useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favoritesCtx.favorites));
+  }, [favoritesCtx.favorites]);
+
+  useEffect(() => {
     fetchApi(page);
   }, [page]);
+
+  const loadMore = () => {
+    setPage(page + 1);
+  };
 
   if (isLoading) {
     return "loading...";
@@ -73,12 +73,8 @@ function App() {
         ></Route>
         <Route
           path="/movie-store/favorites"
-          element={
-            <>
-              <CardList movies={favoritesCtx.favorites} genres={genre} />
-            </>
-          }
-        ></Route>
+          element={<CardList movies={favoritesCtx.favorites} genres={genre} />}
+        />
       </Routes>
     </Router>
   );

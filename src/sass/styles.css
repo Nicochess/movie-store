@@ -9,6 +9,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -215,13 +219,6 @@
   border: 0;
   -webkit-box-shadow: 0 0 0 4.5px #6558f5;
           box-shadow: 0 0 0 4.5px #6558f5;
-  cursor: pointer;
-}
-
-.card__actions .buy:hover {
-  background: #2210f1;
-  -webkit-box-shadow: 0 0 0 4.5px #2210f1;
-          box-shadow: 0 0 0 4.5px #2210f1;
 }
 
 .card__actions .favorite {
@@ -231,17 +228,12 @@
   font-size: 18px;
   background: #b9c4ce;
   border: none;
-  color: white;
-  cursor: pointer;
+  color: #fff;
   padding: 5px 5px 5px 10px;
   border-radius: 0 0 0px 30px;
 }
 
 .card__actions .favorite.active {
-  color: #e61f1f;
-}
-
-.card__actions .favorite:hover {
   color: #e61f1f;
 }
 
@@ -251,7 +243,7 @@
   display: flex;
   margin: 20px auto;
   padding: 10px 30px;
-  background: green;
+  background: #007000;
   color: #fff;
   font-weight: 500;
   border: 0;
@@ -303,6 +295,14 @@
   }
   .card__image img {
     min-height: 330px;
+  }
+  .card__actions .buy:hover {
+    background: #2210f1;
+    -webkit-box-shadow: 0 0 0 4.5px #2210f1;
+            box-shadow: 0 0 0 4.5px #2210f1;
+  }
+  .card__actions .favorite:hover {
+    color: #e61f1f;
   }
 }
 /*# sourceMappingURL=styles.css.map */
