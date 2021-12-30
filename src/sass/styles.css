@@ -219,6 +219,8 @@ button {
   border: 0;
   -webkit-box-shadow: 0 0 0 4.5px #6558f5;
           box-shadow: 0 0 0 4.5px #6558f5;
+  -webkit-transition: .3s all ease;
+  transition: .3s all ease;
 }
 
 .card__actions .favorite {
@@ -231,6 +233,8 @@ button {
   color: #fff;
   padding: 5px 5px 5px 10px;
   border-radius: 0 0 0px 30px;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
 }
 
 .card__actions .favorite.active {

@@ -170,6 +170,7 @@ button {
             border-radius: 3px;
             border: 0;
             box-shadow: 0 0 0 4.5px $addtocart-color;
+            transition: .3s all ease;
         }
 
         .favorite {
@@ -182,6 +183,7 @@ button {
             color: $full-white;
             padding: 5px 5px 5px 10px;
             border-radius: 0 0 0px 30px;
+            transition: .3s ease;
 
             &.active {
                 color: $favorite-active-color;
