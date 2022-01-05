@@ -1,11 +1,29 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
+import { api } from "../App";
 import FavoriteContext from "../context/favorites-context";
 
-const Card = ({ title, rating, image, id, date, genres, genreList }) => {
+const Card = ({ title, rating, image, id, date, genreList }) => {
   const favoriteCtx = useContext(FavoriteContext);
-
   const isFavorite = favoriteCtx.toggleFavorite(id);
+
+  const [genre, setGenre] = useState("");
+  const genreData = `${api.base}/genre/movie/list?api_key=${api.key}&language=pt-BR`;
+
+  useEffect(() => {
+    const fetchGenre = async () => {
+      const res = await fetch(genreData);
+      const data = await res.json();
+
+      let genreCode = genreList[0];
+      const obj = data.genres.filter((gen) => {
+        return gen.id === genreCode;
+      });
+      setGenre(obj[0].name);
+    };
+
+    fetchGenre();
+  }, []);
 
   const toggleStatusFavorite = () => {
     if (isFavorite) {
@@ -21,12 +39,6 @@ const Card = ({ title, rating, image, id, date, genres, genreList }) => {
       });
     }
   };
-
-  let genreCode = genreList[0];
-
-  const genreName = genres.filter((gen) => {
-    return gen.id === genreCode;
-  });
 
   const imageBase = "https://image.tmdb.org/t/p/w500/";
 
@@ -72,7 +84,7 @@ const Card = ({ title, rating, image, id, date, genres, genreList }) => {
             </span>
             {rating}
           </p>
-          <p className="details__genre">{genreName[0].name}</p>
+          <p className="details__genre">{genre}</p>
         </div>
         <p className="price">{randomPrice}</p>
       </section>

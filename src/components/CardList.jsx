@@ -1,7 +1,6 @@
 import Card from "./Card";
 
-const CardList = ({ movies, genres }) => {
-
+const CardList = ({ movies }) => {
   return (
     <main className="movies__grid">
       {movies.map((item) => {
@@ -14,7 +13,6 @@ const CardList = ({ movies, genres }) => {
             rating={item.vote_average}
             date={item.release_date}
             genreList={item.genre_ids}
-            genres={genres}
           />
         );
       })}
