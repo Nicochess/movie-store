@@ -2,10 +2,12 @@ import { createContext, useState } from "react";
 
 const FavoritesContext = createContext({
   favorites: [],
+  genre: [],
   totalFavorites: 0,
   addFavorite: (newFavorite) => {},
   removeFavorite: (favoriteId) => {},
   toggleFavorite: (favoriteId) => {},
+  setGenre: () => {}
 });
 
 export const FavoritesContextProvider = ({ children }) => {
@@ -13,6 +15,8 @@ export const FavoritesContextProvider = ({ children }) => {
     const dataLocal = JSON.parse(localStorage.getItem("favorites")) || [];
     return dataLocal;
   });
+
+  const [genre, setGenre] = useState([])
 
   const addFavoriteHandler = (newFavorite) => {
     setUserFavorites((prevFavorites) => {
@@ -32,6 +36,8 @@ export const FavoritesContextProvider = ({ children }) => {
 
   const context = {
     favorites: userFavorites,
+    genre: genre,
+    setGenre,
     totalFavorites: userFavorites.length,
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,

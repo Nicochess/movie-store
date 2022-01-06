@@ -1,29 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
-import { api } from "../App";
 import FavoriteContext from "../context/favorites-context";
 
 const Card = ({ title, rating, image, id, date, genreList }) => {
   const favoriteCtx = useContext(FavoriteContext);
   const isFavorite = favoriteCtx.toggleFavorite(id);
 
-  const [genre, setGenre] = useState("");
-  const genreData = `${api.base}/genre/movie/list?api_key=${api.key}&language=pt-BR`;
-
-  useEffect(() => {
-    const fetchGenre = async () => {
-      const res = await fetch(genreData);
-      const data = await res.json();
-
-      let genreCode = genreList[0];
-      const obj = data.genres.filter((gen) => {
-        return gen.id === genreCode;
-      });
-      setGenre(obj[0].name);
-    };
-
-    fetchGenre();
-  }, []);
+  let genreCode = genreList[0];
+  const obj = favoriteCtx.genre.filter((gen) => {
+    return gen.id === genreCode;
+  });
 
   const toggleStatusFavorite = () => {
     if (isFavorite) {
@@ -84,7 +70,7 @@ const Card = ({ title, rating, image, id, date, genreList }) => {
             </span>
             {rating}
           </p>
-          <p className="details__genre">{genre}</p>
+          <p className="details__genre">{obj[0].name}</p>
         </div>
         <p className="price">{randomPrice}</p>
       </section>
