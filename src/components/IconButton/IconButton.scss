@@ -1,0 +1,30 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: $gray-100;
+  color: $gray-700;
+  font-size: 22px;
+  position: relative;
+  box-shadow: $box-shadow;
+  cursor: pointer;
+
+  span {
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: $gray-600;
+    border-radius: 100%;
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    color: white;
+  }
+}
