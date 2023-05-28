@@ -18,7 +18,7 @@ import Modal from "../components/Modal/Modal.vue";
       <button>Finalizar Compra</button>
     </div>
   </div>
-  <Modal />
+  
 </template>
 
 <style lang="scss" scoped>
