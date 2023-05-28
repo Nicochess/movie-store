@@ -2,14 +2,13 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
   background-color: #FFF;
   color: $gray-700;
-  font-size: 22px;
+  font-size: 20px;
   position: relative;
   box-shadow: $box-shadow;
-  cursor: pointer;
 
   span {
     font-size: 10px;

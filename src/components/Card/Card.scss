@@ -3,9 +3,8 @@ $card-border-solor: $slate-200;
 article {
   @include flexCenter;
   flex-direction: column;
-  padding: 5px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   border: 1px solid $slate-300;
 }
 
@@ -27,7 +26,6 @@ article {
 img {
   display: flex;
   width: 100%;
-  border-radius: 10px;
   object-fit: cover;
 }
 
@@ -38,7 +36,6 @@ img {
   font-size: 12px;
   font-weight: 600;
   background-color: #00000088;
-  border-radius: 0 0 10px 10px;
   color: #fff;
   text-align: center;
 }
@@ -92,7 +89,6 @@ button {
   letter-spacing: 1px;
   border-radius: 5px;
   color: #fff;
-  cursor: pointer;
 
   .cart-icon {
     font-size: 16px;

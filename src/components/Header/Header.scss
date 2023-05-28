@@ -28,12 +28,7 @@ img {
 
 input {
   height: 35px;
-  border-radius: 3px;
-  color: $slate-400;
-  padding: 10px;
   width: 60%;
-  border: 1px solid $slate-300;
-  box-shadow: $box-shadow;
 }
 
 .actions {
@@ -43,6 +38,10 @@ input {
 
 .heart {
   color: $pink-400;
+}
+
+.cart {
+  color: $neutral-900;
 }
 
 @media (min-width: 480px) {

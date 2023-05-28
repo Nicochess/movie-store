@@ -14,7 +14,7 @@ import IconButton from "../IconButton/IconButton.vue";
         <Heart class="heart"/>
       </IconButton>
       <IconButton :amount="3">
-        <Cart />
+        <Cart class="cart" />
       </IconButton>
     </div>
   </header>

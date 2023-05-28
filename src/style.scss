@@ -1,5 +1,4 @@
 :root {
-  line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,4 +19,15 @@
 body {
   min-height: 100vh;
   background-color: $slate-200;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $slate-300;
+  color: $slate-400;
+}
+
+button {
+  cursor: pointer;
 }

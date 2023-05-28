@@ -18,7 +18,7 @@ import Card from "../components/Card/Card.vue";
 .card-list {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 45%));
+  grid-template-columns: repeat(auto-fit, minmax(44%, 200px));
   gap: 20px 10px;
   padding: 0 10px 30px;
   margin: 0 auto;
@@ -27,7 +27,7 @@ import Card from "../components/Card/Card.vue";
 
 @media (min-width: 468px) {
   .card-list {
-    grid-template-columns: repeat(auto-fit, minmax(190px, 21%));
+    grid-template-columns: repeat(auto-fit, minmax(21%, 200px));
     gap: 40px 30px;
   }
 }

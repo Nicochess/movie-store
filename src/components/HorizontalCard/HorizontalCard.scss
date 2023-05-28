@@ -1,0 +1,56 @@
+.cart-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 35% 10% 20% 10%;
+  align-items: center;
+  gap: 5px;
+
+  h4 {
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.cart-card {
+  border: 1px solid $slate-300;
+  background: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  box-shadow: $box-shadow;
+
+  h3 {
+    font-size: 12px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .amount {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .icons {
+    font-size: 18px;
+    color: $slate-500;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .cart-grid {
+    grid-template-columns: 20% 35% 10% 20% 7%;
+    gap: 10px;
+  }
+}
