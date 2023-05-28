@@ -1,6 +1,8 @@
 <script setup>
 import Form from "../components/Form/Form.vue";
 import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
+import Modal from "../components/Modal/Modal.vue";
+
 </script>
 
 <template>
@@ -16,6 +18,7 @@ import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
       <button>Finalizar Compra</button>
     </div>
   </div>
+  <Modal />
 </template>
 
 <style lang="scss" scoped>
