@@ -10,10 +10,10 @@ import IconButton from "../IconButton/IconButton.vue";
     </div>
     <input placeholder="Busque por um clássico" />
     <div class="actions">
-      <IconButton :amount="1">
-        <Heart />
+      <IconButton :amount="9">
+        <Heart class="heart"/>
       </IconButton>
-      <IconButton>
+      <IconButton :amount="3">
         <Cart />
       </IconButton>
     </div>

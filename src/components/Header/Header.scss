@@ -1,12 +1,16 @@
 header {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
-  padding: 10px;
-  background-color: $stone-100;
-  justify-content: space-around;
   align-items: center;
-  box-shadow: $box-shadow;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 15px 10px;
+  margin: 0 0 20px;
+  background-color: $stone-100;
+  border-bottom: 1px solid $gray-300;
+  z-index: 1;
 }
 
 .image-container {
@@ -29,6 +33,7 @@ input {
   padding: 10px;
   width: 60%;
   border: 1px solid $slate-300;
+  box-shadow: $box-shadow;
 }
 
 .actions {
@@ -36,11 +41,15 @@ input {
   gap: 20px;
 }
 
+.heart {
+  color: $pink-400;
+}
+
 @media (min-width: 480px) {
   header {
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 10px 20px;
   }
 
   .image-container {
@@ -49,7 +58,9 @@ input {
   }
 
   input {
-    width: auto;
-    min-width: 300px;
+    min-width: 250px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 10px;
   }
 }
