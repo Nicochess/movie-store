@@ -2,6 +2,13 @@
 import Form from "../components/Form/Form.vue";
 import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
 import Modal from "../components/Modal/Modal.vue";
+import { ref } from "vue";
+
+const isModalOpen = ref(false)
+
+const handleModal = () => {
+  isModalOpen.value = !isModalOpen.value
+}
 
 </script>
 
@@ -15,10 +22,10 @@ import Modal from "../components/Modal/Modal.vue";
         <p>Total:</p>
         <p>R$ 20,00</p>
       </div>
-      <button>Finalizar Compra</button>
+      <button @click="handleModal">Finalizar Compra</button>
     </div>
   </div>
-  
+  <Modal v-if="isModalOpen"/>
 </template>
 
 <style lang="scss" scoped>

@@ -18,10 +18,10 @@
   width: 100%;
   max-width: 450px;
   padding: 20px;
-  border: 1px solid $slate-500;
   border-radius: 5px;
-  box-shadow: $box-shadow;
+  border: 1px solid $slate-500;
   background-color: #fff;
+  box-shadow: $box-shadow;
 
   h5 {
     color: $slate-900;
@@ -32,13 +32,15 @@
     text-align: center;
   }
 
-  button {
+  .back {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid $slate-500;
+    background-color: $slate-900;
     color: $slate-50;
     font-weight: 600;
-    background-color: $slate-900;
+    text-align: center;
+    text-decoration: none;
   }
 }

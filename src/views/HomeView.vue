@@ -1,16 +1,13 @@
 <script setup>
-import Card from "../components/Card/Card.vue";
+import Card from "@/components/Card/Card.vue";
+import { popularMovies } from "@/services/movieService.js";
+
+const { results } = await popularMovies();
 </script>
 
 <template>
   <div class="card-list">
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    <Card v-for="movie in results" :key="movie.id" :movie="movie" />
   </div>
 </template>
 

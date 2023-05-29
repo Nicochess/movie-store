@@ -1,13 +1,15 @@
 <script setup>
 import { Heart, Cart } from "mdue";
+import { RouterLink } from "vue-router";
 import IconButton from "../IconButton/IconButton.vue";
 </script>
 
 <template>
   <header>
-    <div class="image-container">
+    <RouterLink to="/" class="image-container">
       <img src="@/assets/storeIcon.png" />
-    </div>
+    </RouterLink>
+
     <input placeholder="Busque por um clássico" />
     <div class="actions">
       <IconButton :amount="9">
