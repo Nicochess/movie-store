@@ -10,6 +10,7 @@ article {
 
 .image-container {
   position: relative;
+  min-height: 305px;
   width: 100%;
   margin: 0 0 5px;
 }
@@ -21,6 +22,10 @@ article {
   font-size: 25px;
   color: $slate-200;
   cursor: pointer;
+}
+
+.active {
+  color: $pink-400;
 }
 
 img {
@@ -46,18 +51,21 @@ img {
   flex-direction: column;
   gap: 5px;
   width: 100%;
-  padding:0 6px 5px;
+  padding: 0 6px 5px;
 }
 
 .title {
   font-size: 16px;
   height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: center;
 }
 
 .category {
   @include flexCenter;
   gap: 10px;
+  height: 20px;
 }
 
 .star {
@@ -99,5 +107,11 @@ button {
   &:hover {
     background-color: $green-600;
     box-shadow: $box-shadow;
+  }
+}
+
+@media (min-width: 768px) {
+  .image-container {
+    height: 305px;
   }
 }

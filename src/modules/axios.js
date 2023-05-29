@@ -2,6 +2,7 @@ import axios from "axios";
 
 const MoviesClient = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
+  timeout: 1500,
   headers: {
     Accept: "application/json",
   },

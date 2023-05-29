@@ -12,7 +12,7 @@ export const getGenreList = async () => {
 
 export const queryMovies = async (query, page = 1) => {
   const res = await MoviesClient.get(
-    `/movie/search?query=${query}&page=${page}`
+    `/search/movie?query=${query}&page=${page}`
   );
 
   return res.data;

@@ -1,14 +1,15 @@
 <script setup>
 import { Star, Heart, Cart } from "mdue";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, computed } from "vue";
+import Fallback from "@/assets/fallback.png";
 import { formatPrice, convertDate } from "@/utils";
+import { useStore } from "vuex";
 
 const { movie } = defineProps({
   movie: Object,
 });
 
-console.log(movie);
-
+const store = useStore();
 const movieProduct = reactive({ ...movie, price: 10 });
 
 const processProps = () => {
@@ -16,7 +17,28 @@ const processProps = () => {
   movieProduct.rate = Math.floor(movie.vote_average);
   movieProduct.price = formatPrice(movieProduct.rate * 5);
   movieProduct.date = convertDate(movie.release_date);
-  //movieProduct.genre = genreById(movie.genre_ids[0]);
+  movieProduct.genre = store.getters.findGenreById(movie.genre_ids[0]);
+  movieProduct.favorite = store.getters.findFavoriteById(movieProduct.id);
+};
+
+const isFavorite = computed(() => store.getters.findFavoriteById(movieProduct.id))
+
+
+const handleFallback = () => {
+  movieProduct.image = Fallback;
+};
+
+const addToCart = () => {
+  store.dispatch("addToCart", movieProduct);
+};
+
+const handleFavorite = () => {
+  if (isFavorite.value) {
+    store.dispatch("removeFromFavorites", movieProduct);
+    return;
+  }
+
+  store.dispatch("addToFavorites", movieProduct);
 };
 
 onMounted(() => {
@@ -27,23 +49,30 @@ onMounted(() => {
 <template>
   <article>
     <div class="image-container">
-      <Heart class="favorite" />
-      <img :src="movieProduct.image" />
+      <Heart
+        :class="`${isFavorite && 'active'} favorite`"
+        @click="handleFavorite"
+      />
+      <img
+        :src="movieProduct.image"
+        :alt="movieProduct.title"
+        @error="handleFallback"
+      />
       <p class="date">{{ movieProduct.date }}</p>
     </div>
     <div class="details">
       <h3 class="title">{{ movieProduct.title }}</h3>
       <div class="category">
-        <div class="star">
+        <div class="star" @click="handleFavorite">
           <Star class="star-icon" />
           <span class="star-text">{{ movieProduct.rate }}</span>
         </div>
 
-        <p>Terror</p>
+        <p>{{ movieProduct.genre && movieProduct.genre.name }}</p>
       </div>
       <p class="price">{{ movieProduct.price }}</p>
     </div>
-    <button><Cart class="cart-icon" /> Adicionar</button>
+    <button @click="addToCart"><Cart class="cart-icon" /> Adicionar</button>
   </article>
 </template>
 

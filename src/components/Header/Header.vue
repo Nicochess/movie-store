@@ -2,6 +2,17 @@
 import { Heart, Cart } from "mdue";
 import { RouterLink } from "vue-router";
 import IconButton from "../IconButton/IconButton.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const { state, commit } = useStore();
+
+const cartItems = computed(() => state.cartProducts.length);
+const favoriteItems = computed(() => state.favoriteProducts.length);
+const search = computed({
+  get: () => state.search,
+  set: (value) => commit("setSearch", value),
+});
 </script>
 
 <template>
@@ -10,12 +21,12 @@ import IconButton from "../IconButton/IconButton.vue";
       <img src="@/assets/storeIcon.png" />
     </RouterLink>
 
-    <input placeholder="Busque por um clássico" />
+    <input placeholder="Busque por um clássico" v-model="search" />
     <div class="actions">
-      <IconButton :amount="9">
+      <IconButton :amount="favoriteItems">
         <Heart class="heart" />
       </IconButton>
-      <IconButton :amount="3">
+      <IconButton :amount="cartItems">
         <Cart class="cart" />
       </IconButton>
     </div>

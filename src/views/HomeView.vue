@@ -1,13 +1,38 @@
 <script setup>
 import Card from "@/components/Card/Card.vue";
-import { popularMovies } from "@/services/movieService.js";
+import { popularMovies, queryMovies } from "@/services/movieService.js";
+import { watch, ref, computed } from "vue";
+import { useStore } from "vuex";
 
-const { results } = await popularMovies();
+const store = useStore();
+const movies = ref([]);
+const search = computed(() => store.state.search);
+
+const getPopularMovies = async () => {
+  const { results } = await popularMovies();
+  movies.value = results;
+};
+
+const getMoviesBySearch = async (query) => {
+  if (!query) {
+    getPopularMovies();
+    return;
+  }
+
+  const { results } = await queryMovies(query);
+  movies.value = results;
+};
+
+watch(search, (newValue) => {
+  getMoviesBySearch(newValue);
+});
+
+getPopularMovies();
 </script>
 
 <template>
   <div class="card-list">
-    <Card v-for="movie in results" :key="movie.id" :movie="movie" />
+    <Card v-for="movie in movies" :key="movie.id" :movie="movie" />
   </div>
 </template>
 
