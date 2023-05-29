@@ -14,6 +14,7 @@
     "sass": "^1.62.1",
     "vue": "^3.2.47",
     "vue-router": "^4.2.1",
+    "vue-the-mask": "^0.11.1",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

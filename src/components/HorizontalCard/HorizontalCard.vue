@@ -1,22 +1,30 @@
 <script setup>
 import { Cart, Delete } from "mdue";
+import ImageFallback from "../ImageFallback/ImageFallback.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const { movie, isCart } = defineProps({
+  movie: Object,
+  isCart: Boolean,
+});
+
+const { dispatch, getters } = useStore();
+const amount = computed(() => getters.findAmountById(movie.id));
 </script>
 
 <template>
-  <div class="cart-grid">
-    <h4>Imagem</h4>
-    <h4>Nome</h4>
-    <h4>Qtd</h4>
-    <h4>Preço</h4>
-  </div>
   <article class="cart-grid cart-card">
-    <img
-      src="https://static.stealthelook.com.br/wp-content/uploads/2022/03/qual-a-serie-o-filme-e-o-livro-mais-lido-do-mundo-avatar-20220321164246.jpg"
+    <ImageFallback :src="movie.image" :alt="movie.title" />
+    <h3 class="title">{{ movie.title }}</h3>
+    <p class="amount">{{ amount.length }}</p>
+    <Cart v-if="isCart" @click="dispatch('addToCart', movie)" />
+    <p class="price">{{ movie.price }}</p>
+    <Delete
+      class="icons"
+      v-if="!isCart"
+      @click="dispatch('removeFromCart', movie)"
     />
-    <h3 class="title">Nome do Filme</h3>
-    <p class="amount">1</p>
-    <p class="price">R$ 10,00</p>
-    <Delete class="icons" />
   </article>
 </template>
 

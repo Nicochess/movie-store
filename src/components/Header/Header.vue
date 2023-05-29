@@ -13,6 +13,13 @@ const search = computed({
   get: () => state.search,
   set: (value) => commit("setSearch", value),
 });
+const handleModal = (payload) => {
+  if (payload === state.isModal) {
+    commit("setModal", "");
+    return;
+  }
+  commit("setModal", payload);
+};
 </script>
 
 <template>
@@ -23,10 +30,10 @@ const search = computed({
 
     <input placeholder="Busque por um clássico" v-model="search" />
     <div class="actions">
-      <IconButton :amount="favoriteItems">
+      <IconButton :amount="favoriteItems" @click="handleModal('favorites')">
         <Heart class="heart" />
       </IconButton>
-      <IconButton :amount="cartItems">
+      <IconButton :amount="cartItems" @click="handleModal('cart')">
         <Cart class="cart" />
       </IconButton>
     </div>

@@ -1,13 +1,22 @@
-<script setup></script>
+<script setup>
+import HorizontalCard from "../HorizontalCard/HorizontalCard.vue";
+
+const { items } = defineProps({
+  items: Array,
+  title: String,
+});
+</script>
 
 <template>
-  <aside>
-    <div></div>
-    <div class="total">
-      <p>Total:</p>
-      <p>R$ 20,00</p>
+  <aside class="sidebar">
+    <div class="sidebar-title">
+      <h3>{{ title }}</h3>
+      <span>Esvaziar</span>
     </div>
-    <button>Finalizar</button>
+    <div class="sidebar-content">
+      <HorizontalCard v-for="item in items" :key="item.id" :movie="item" />
+    </div>
+    <slot />
   </aside>
 </template>
 

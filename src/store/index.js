@@ -7,7 +7,7 @@ const store = createStore({
     genreList: [],
     cartProducts: [],
     favoriteProducts: [],
-    isModalOpen: false,
+    isModal: "",
   },
   mutations: {
     setGenreList(state, payload) {
@@ -23,7 +23,7 @@ const store = createStore({
       state.favoriteProducts = payload;
     },
     setModal(state, payload) {
-      state.isModalOpen = payload;
+      state.isModal = payload;
     },
   },
   actions: {
@@ -31,21 +31,38 @@ const store = createStore({
       const { genres } = await getGenreList();
       commit("setGenreList", genres);
     },
-    addToCart: ({ commit, state }, payload) => {
+    addToCart: ({ dispatch, state }, payload) => {
       const cart = [payload, ...state.cartProducts];
-      commit("setCart", cart);
+      dispatch("commitCart", cart);
     },
-    removeFromCart: ({ commit, state }, payload) => {
-      const cart = state.cartProducts.filter((item) => item.id !== payload.id);
+    commitCart: ({ commit, dispatch }, cart) => {
       commit("setCart", cart);
+      dispatch("setCartPersistence", cart);
     },
-    addToFavorites: ({ commit, state }, payload) => {
+    removeFromCart: ({ dispatch, state }, { id }) => {
+      const cart = state.cartProducts.filter((item) => item.id !== id);
+      dispatch("commitCart", cart);
+    },
+    addToFavorites: ({ state, dispatch }, payload) => {
       const favorites = [payload, ...state.favoriteProducts];
-      commit("setFavorites", favorites);
+      dispatch("commitFavorites", favorites);
     },
-    removeFromFavorites: ({ commit, state }, payload) => {
-      const favorites = state.favoriteProducts.filter((item) => item.id !== payload.id);
-      commit("setFavorites", favorites);
+    removeFromFavorites: ({ dispatch, state }, { id }) => {
+      const favorites = state.favoriteProducts.filter((item) => item.id !== id);
+      dispatch("commitFavorites", favorites);
+    },
+    commitFavorites: ({ commit, dispatch }, payload) => {
+      commit("setFavorites", payload);
+      dispatch("setFavoritesPersistence", payload);
+    },
+    setFavoritesPersistence: ({ state }) => {
+      localStorage.setItem(
+        "favoritesProducts",
+        JSON.stringify(state.favoriteProducts)
+      );
+    },
+    setCartPersistence: ({ state }) => {
+      localStorage.setItem("cartProducts", JSON.stringify(state.cartProducts));
     },
   },
   getters: {
@@ -54,6 +71,20 @@ const store = createStore({
     },
     findFavoriteById: (state) => (id) => {
       return state.favoriteProducts.some((item) => item.id === id);
+    },
+    findAmountById: (state) => (id) => {
+      return state.cartProducts.filter((item) => item.id === id);
+    },
+    renderCartList: (state) => {
+      return state.cartProducts.filter((obj, index, self) => {
+        return index === self.findIndex((o) => o.id === obj.id);
+      });
+    },
+    totalCart: (state) => {
+      return state.cartProducts.reduce(
+        (acc, item) => Math.floor(item.rate * 5) + acc,
+        0
+      );
     },
   },
 });

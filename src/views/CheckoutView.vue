@@ -1,31 +1,36 @@
 <script setup>
-import Form from "../components/Form/Form.vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+import Form from "@/components/Form/Form.vue";
 import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
-import Modal from "../components/Modal/Modal.vue";
-import { ref } from "vue";
+import Modal from "@/components/Modal/Modal.vue";
+import { formatPrice } from "@/utils";
 
-const isModalOpen = ref(false)
+const isModalOpen = ref(false);
+
+const { getters } = useStore();
 
 const handleModal = () => {
-  isModalOpen.value = !isModalOpen.value
-}
+  isModalOpen.value = !isModalOpen.value;
+};
 
+const totalCart = computed(() => formatPrice(getters.totalCart));
 </script>
 
 <template>
   <div class="container">
     <h2>Finalizar Compra</h2>
-    <Form class="form"/>
+    <Form class="form" />
     <div class="cart">
-      <HorizontalCard />
+      <div class="cart-content"></div>
       <div class="total">
         <p>Total:</p>
-        <p>R$ 20,00</p>
+        <p>{{ totalCart || 0 }}</p>
       </div>
       <button @click="handleModal">Finalizar Compra</button>
     </div>
   </div>
-  <Modal v-if="isModalOpen"/>
+  <Modal v-if="isModalOpen" />
 </template>
 
 <style lang="scss" scoped>
@@ -36,6 +41,10 @@ const handleModal = () => {
   padding: 0 15px 20px;
   margin: 0 auto;
   max-width: 480px;
+}
+
+.cart-content {
+  min-height: 300px;
 }
 
 .total {

@@ -1,9 +1,9 @@
 <script setup>
 import { Star, Heart, Cart } from "mdue";
 import { onMounted, reactive, computed } from "vue";
-import Fallback from "@/assets/fallback.png";
 import { formatPrice, convertDate } from "@/utils";
 import { useStore } from "vuex";
+import ImageFallback from "../ImageFallback/ImageFallback.vue";
 
 const { movie } = defineProps({
   movie: Object,
@@ -18,15 +18,11 @@ const processProps = () => {
   movieProduct.price = formatPrice(movieProduct.rate * 5);
   movieProduct.date = convertDate(movie.release_date);
   movieProduct.genre = store.getters.findGenreById(movie.genre_ids[0]);
-  movieProduct.favorite = store.getters.findFavoriteById(movieProduct.id);
 };
 
-const isFavorite = computed(() => store.getters.findFavoriteById(movieProduct.id))
-
-
-const handleFallback = () => {
-  movieProduct.image = Fallback;
-};
+const isFavorite = computed(() =>
+  store.getters.findFavoriteById(movieProduct.id)
+);
 
 const addToCart = () => {
   store.dispatch("addToCart", movieProduct);
@@ -53,10 +49,10 @@ onMounted(() => {
         :class="`${isFavorite && 'active'} favorite`"
         @click="handleFavorite"
       />
-      <img
+      <ImageFallback
+        class="banner"
         :src="movieProduct.image"
         :alt="movieProduct.title"
-        @error="handleFallback"
       />
       <p class="date">{{ movieProduct.date }}</p>
     </div>

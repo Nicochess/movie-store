@@ -1,6 +1,7 @@
 aside {
   position: fixed;
   width: 100%;
+  min-width: 300px;
   padding: 10px;
   background-color: #FFF;
   height: calc(100vh - 117px);
@@ -9,33 +10,37 @@ aside {
   z-index: 1;
 }
 
-.total {
+.sidebar {
   display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  font-size: 18px;
-  color: $slate-800;
-  font-weight: 600;
+  flex-direction: column;
 }
 
-button {
-  width: 100%;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: $slate-100;
-  color: $slate-800;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid $slate-400;
-  border-radius: 5px;
-  box-shadow: $box-shadow;
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: $red-600;
+    cursor: pointer;
+  }
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
 }
 
 @media (min-width: 480px) {
   aside {
-    height: calc(100vh - 61px);
-    border-left: 1px solid $slate-300;
-    width: 25%;
     top: 61px;
+    height: calc(100vh - 61px);
+    width: 40%;
+    max-width: 400px;
+    border-left: 1px solid $slate-300;
   }
 }

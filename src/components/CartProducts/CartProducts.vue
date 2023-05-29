@@ -1,0 +1,35 @@
+<script setup>
+import { useStore } from "vuex";
+import Sidebar from "../Sidebar/Sidebar.vue";
+import { useRouter } from "vue-router";
+import { formatPrice } from "@/utils";
+import { computed } from "vue";
+
+const { movie } = defineProps({
+  movie: Object,
+});
+
+const { getters } = useStore();
+const router = useRouter();
+
+const goToCheckout = () => {
+  router.push("/checkout");
+};
+
+const renderList = computed(() => getters.renderCartList);
+const totalCart = computed(() => formatPrice(getters.totalCart));
+</script>
+
+<template>
+  <Sidebar :items="renderList" :title="'Meu Carrinho'">
+    <template #default>
+      <div class="total">
+        <p>Total:</p>
+        <p>{{ totalCart }}</p>
+      </div>
+      <button @click="goToCheckout">Finalizar</button>
+    </template>
+  </Sidebar>
+</template>
+
+<style src="./CartProducts.scss" scoped />
