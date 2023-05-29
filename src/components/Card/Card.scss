@@ -105,6 +105,11 @@ button {
     font-size: 16px;
   }
 
+  &:disabled:hover {
+    background-color: $slate-400;
+    cursor: default;
+  }
+
   &:hover {
     background-color: $green-600;
     box-shadow: $box-shadow;

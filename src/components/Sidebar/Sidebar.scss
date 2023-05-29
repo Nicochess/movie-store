@@ -19,6 +19,7 @@ aside {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 15px;
 
   span {
     font-size: 14px;
@@ -31,6 +32,8 @@ aside {
 .sidebar-content {
   display: flex;
   flex-direction: column;
+  padding: 0 5px;
+  gap: 10px;
   flex: 1;
   overflow-y: scroll;
 }

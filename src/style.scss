@@ -31,4 +31,19 @@ input {
 
 button {
   cursor: pointer;
+
+  &:disabled {
+    background-color: $slate-400;
+    cursor: default;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: $slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $slate-400;
+  border-radius: 5px;
 }

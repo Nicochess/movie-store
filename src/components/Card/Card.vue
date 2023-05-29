@@ -68,7 +68,7 @@ onMounted(() => {
       </div>
       <p class="price">{{ movieProduct.price }}</p>
     </div>
-    <button @click="addToCart"><Cart class="cart-icon" /> Adicionar</button>
+    <button @click="addToCart" :disabled="Number(movieProduct.rate) == 0"><Cart class="cart-icon" /> Adicionar</button>
   </article>
 </template>
 

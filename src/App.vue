@@ -8,7 +8,7 @@ import CartFavorites from "./components/CartFavorites/CartFavorites.vue";
 const { dispatch, state, commit } = useStore();
 const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 const favoriteProducts = JSON.parse(localStorage.getItem("favoritesProducts")) || [];
-console.log(cartProducts)
+
 commit("setCart", cartProducts);
 commit("setFavorites", favoriteProducts);
 dispatch("fetchGenreList");

@@ -8,12 +8,13 @@ import { formatPrice } from "@/utils";
 
 const isModalOpen = ref(false);
 
-const { getters } = useStore();
+const { getters, state } = useStore();
 
 const handleModal = () => {
   isModalOpen.value = !isModalOpen.value;
 };
 
+const cartList = computed(() => getters.renderCartList);
 const totalCart = computed(() => formatPrice(getters.totalCart));
 </script>
 
@@ -22,7 +23,13 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
     <h2>Finalizar Compra</h2>
     <Form class="form" />
     <div class="cart">
-      <div class="cart-content"></div>
+      <div class="cart-content">
+        <HorizontalCard
+          v-for="movie in cartList"
+          :key="movie.id"
+          :movie="movie"
+        />
+      </div>
       <div class="total">
         <p>Total:</p>
         <p>{{ totalCart || 0 }}</p>
@@ -44,7 +51,12 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
 }
 
 .cart-content {
-  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 10px;
+  height: 300px;
+  overflow-y: scroll;
 }
 
 .total {

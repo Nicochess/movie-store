@@ -16,8 +16,6 @@
   background: #fff;
   padding: 5px;
   border-radius: 5px;
-  overflow: hidden;
-  margin-top: 10px;
   box-shadow: $box-shadow;
 
   h3 {
@@ -26,7 +24,7 @@
 
   img {
     width: 100%;
-    max-width: 100px;
+    max-width: 70px;
     border-radius: 5px;
     object-fit: cover;
   }
@@ -50,7 +48,7 @@
 
 @media (min-width: 768px) {
   .cart-grid {
-    grid-template-columns: 20% 35% 10% 20% 7%;
+    grid-template-columns: 20% 28% 10% 20% 10%;
     gap: 10px;
   }
 }
