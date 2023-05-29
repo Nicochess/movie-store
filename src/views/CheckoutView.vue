@@ -4,11 +4,13 @@ import { useStore } from "vuex";
 import Form from "@/components/Form/Form.vue";
 import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
 import Modal from "@/components/Modal/Modal.vue";
+import EmptyResult from "@/components/EmptyResult/EmptyResult.vue";
 import { formatPrice } from "@/utils";
+import { CartOff } from "mdue";
 
 const isModalOpen = ref(false);
 
-const { getters, state } = useStore();
+const { getters } = useStore();
 
 const handleModal = () => {
   isModalOpen.value = !isModalOpen.value;
@@ -23,12 +25,22 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
     <h2>Finalizar Compra</h2>
     <Form class="form" />
     <div class="cart">
+      <div class="cart-title">
+        <p>Imagem</p>
+        <p>Nome</p>
+        <p>Qtd</p>
+        <p>Preço</p>
+      </div>
       <div class="cart-content">
         <HorizontalCard
           v-for="movie in cartList"
           :key="movie.id"
           :movie="movie"
+          :isCart="true"
         />
+        <EmptyResult v-if="!cartList.length">
+          <CartOff />
+        </EmptyResult>
       </div>
       <div class="total">
         <p>Total:</p>
@@ -41,6 +53,11 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
 </template>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 3px;
+  background-color: transparent;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -48,6 +65,18 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
   padding: 0 15px 20px;
   margin: 0 auto;
   max-width: 480px;
+}
+
+.cart-title {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 5px;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 20px 1fr 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .cart-content {

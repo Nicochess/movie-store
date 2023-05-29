@@ -4,7 +4,8 @@ article {
   @include flexCenter;
   flex-direction: column;
   background-color: #fff;
-  border-radius: 0 0 10px 10px;
+  padding: 5px;
+  border-radius: 10px;
   border: 1px solid $slate-300;
 }
 
@@ -26,12 +27,15 @@ article {
 
 .active {
   color: $pink-400;
+  transition: .2s ease all;
 }
 
 .banner {
   display: flex;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
   object-fit: cover;
 }
 
@@ -42,6 +46,7 @@ article {
   padding: 2px 0;
   font-size: 12px;
   font-weight: 600;
+  border-radius: 0 0 10px 10px;
   background-color: #00000088;
   color: #fff;
   text-align: center;

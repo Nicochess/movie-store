@@ -18,7 +18,7 @@
 
 body {
   min-height: 100vh;
-  background-color: $slate-200;
+  background-color: $slate-50;
   position: relative;
 }
 
@@ -39,8 +39,8 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  background-color: $slate-100;
+  width: 0px;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {

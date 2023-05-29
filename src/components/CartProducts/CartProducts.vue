@@ -21,7 +21,7 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
 </script>
 
 <template>
-  <Sidebar :items="renderList" :title="'Meu Carrinho'">
+  <Sidebar :items="renderList" :title="'Meu Carrinho'" :isCart="true">
     <template #default>
       <div class="total">
         <p>Total:</p>

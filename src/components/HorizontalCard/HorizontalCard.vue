@@ -10,21 +10,26 @@ const { movie, isCart } = defineProps({
 });
 
 const { dispatch, getters } = useStore();
+const handleDelete = () => {
+  if (isCart) {
+    dispatch("removeFromCart", movie);
+    return;
+  }
+
+  dispatch("removeFromFavorites", movie);
+};
+
 const amount = computed(() => getters.findAmountById(movie.id));
 </script>
 
 <template>
-  <article class="cart-grid cart-card">
+  <article :class="`${isCart ? 'cart' : 'favorite'} cart-grid cart-card`">
     <ImageFallback :src="movie.image" :alt="movie.title" />
     <h3 class="title">{{ movie.title }}</h3>
-    <p class="amount">{{ amount.length }}</p>
-    <Cart v-if="isCart" @click="dispatch('addToCart', movie)" />
+    <p v-if="isCart" class="amount">{{ amount.length }}</p>
     <p class="price">{{ movie.price }}</p>
-    <Delete
-      class="icons"
-      v-if="!isCart"
-      @click="dispatch('removeFromCart', movie)"
-    />
+    <Cart v-if="!isCart" class="icons" @click="dispatch('addToCart', movie)" />
+    <Delete class="icons" @click="handleDelete" />
   </article>
 </template>
 

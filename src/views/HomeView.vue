@@ -3,6 +3,8 @@ import Card from "@/components/Card/Card.vue";
 import { popularMovies, queryMovies } from "@/services/movieService.js";
 import { watch, ref, computed } from "vue";
 import { useStore } from "vuex";
+import EmptyResult from "../components/EmptyResult/EmptyResult.vue";
+import { SearchWeb } from "mdue";
 
 const store = useStore();
 const movies = ref([]);
@@ -33,6 +35,9 @@ getPopularMovies();
 <template>
   <div class="card-list">
     <Card v-for="movie in movies" :key="movie.id" :movie="movie" />
+    <EmptyResult>
+      <SearchWeb />
+    </EmptyResult>
   </div>
 </template>
 
@@ -49,7 +54,7 @@ getPopularMovies();
 
 @media (min-width: 468px) {
   .card-list {
-    grid-template-columns: repeat(auto-fit, minmax(21%, 200px));
+    grid-template-columns: repeat(auto-fit, minmax(21%, 220px));
     gap: 40px 30px;
   }
 }

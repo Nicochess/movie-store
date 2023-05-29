@@ -1,9 +1,13 @@
+::-webkit-scrollbar {
+  width: 3px;
+  background-color: transparent;
+}
+
 aside {
   position: fixed;
   width: 100%;
-  min-width: 300px;
-  padding: 10px;
-  background-color: #FFF;
+  padding: 20px 10px;
+  background-color: #fff;
   height: calc(100vh - 117px);
   top: 117px;
   right: 0;
@@ -43,7 +47,8 @@ aside {
     top: 61px;
     height: calc(100vh - 61px);
     width: 40%;
-    max-width: 400px;
+    min-width: 400px;
+    max-width: 420px;
     border-left: 1px solid $slate-300;
   }
 }
