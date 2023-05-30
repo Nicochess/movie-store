@@ -3,6 +3,7 @@ import { useStore } from "vuex";
 import HorizontalCard from "../HorizontalCard/HorizontalCard.vue";
 import EmptyResult from "../EmptyResult/EmptyResult.vue";
 import { CartOff, HeartBroken } from "mdue";
+import { TransitionGroup } from "vue";
 
 const { items, title, isCart } = defineProps({
   items: Array,
@@ -29,12 +30,14 @@ const handleDeleteAll = () => {
       <span @click="handleDeleteAll">Esvaziar</span>
     </div>
     <div class="sidebar-content">
-      <HorizontalCard
-        v-for="item in items"
-        :key="item.id"
-        :movie="item"
-        :isCart="isCart"
-      />
+      <TransitionGroup name="card">
+        <HorizontalCard
+          v-for="item in items"
+          :key="item.id"
+          :movie="item"
+          :isCart="isCart"
+        />
+      </TransitionGroup>
       <EmptyResult v-if="!items.length">
         <CartOff v-if="isCart" />
         <HeartBroken v-else />

@@ -1,29 +1,76 @@
 <script setup>
-import { computed, ref } from "vue";
+import { TransitionGroup, computed, ref } from "vue";
 import { useStore } from "vuex";
-import Form from "@/components/Form/Form.vue";
 import HorizontalCard from "@/components/HorizontalCard/HorizontalCard.vue";
 import Modal from "@/components/Modal/Modal.vue";
 import EmptyResult from "@/components/EmptyResult/EmptyResult.vue";
 import { formatPrice } from "@/utils";
 import { CartOff } from "mdue";
 
+const { commit, getters } = useStore();
 const isModalOpen = ref(false);
-
-const { getters } = useStore();
 
 const handleModal = () => {
   isModalOpen.value = !isModalOpen.value;
+  commit("setCart", []);
 };
+
+const userInfo = ref({
+  name: "",
+  cpf: "",
+  phone: "",
+  mailAddress: "",
+  zipCode: "",
+  address: "",
+  city: "",
+  state: "",
+});
 
 const cartList = computed(() => getters.renderCartList);
 const totalCart = computed(() => formatPrice(getters.totalCart));
 </script>
 
 <template>
-  <div class="container">
+  <form class="container" @submit.prevent="handleModal">
     <h2>Finalizar Compra</h2>
-    <Form class="form" />
+
+    <section class="form">
+      <input placeholder="Nome Completo" v-model="userInfo.name" required />
+      <div class="input-group">
+        <input
+          placeholder="CPF"
+          v-model="userInfo.cpf"
+          v-mask="'###.###.###-##'"
+          required
+        />
+        <div class="input-group" />
+        <input
+          placeholder="Celular"
+          v-model="userInfo.phone"
+          v-mask="'(##) # ####-####'"
+          required
+        />
+      </div>
+      <input placeholder="E-Mail" v-model="userInfo.mailAddress" required />
+      <div class="input-group">
+        <input
+          placeholder="CEP"
+          v-model="userInfo.zipCode"
+          v-mask="'#####-###'"
+          required
+        />
+        <input
+          placeholder="Endereço"
+          v-model="userInfo.address"
+          class="bigger-divided"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <input placeholder="Cidade" v-model="userInfo.city" required />
+        <input placeholder="Estado" v-model="userInfo.state" required />
+      </div>
+    </section>
     <div class="cart">
       <div class="cart-title">
         <p>Imagem</p>
@@ -32,30 +79,47 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
         <p>Preço</p>
       </div>
       <div class="cart-content">
-        <HorizontalCard
-          v-for="movie in cartList"
-          :key="movie.id"
-          :movie="movie"
-          :isCart="true"
-        />
+        <TransitionGroup name="card">
+          <HorizontalCard
+            v-for="movie in cartList"
+            :key="movie.id"
+            :movie="movie"
+            :isCart="true"
+          />
+        </TransitionGroup>
         <EmptyResult v-if="!cartList.length">
           <CartOff />
         </EmptyResult>
       </div>
       <div class="total">
         <p>Total:</p>
-        <p>{{ totalCart || 0 }}</p>
+        <p>{{ totalCart }}</p>
       </div>
-      <button @click="handleModal">Finalizar Compra</button>
+      <button :disabled="!cartList.length" type="submit">
+        Finalizar Compra
+      </button>
     </div>
-  </div>
-  <Modal v-if="isModalOpen" />
+  </form>
+  <Modal v-if="isModalOpen" :name="userInfo.name.split(' ')[0]" />
 </template>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 3px;
   background-color: transparent;
+}
+
+.card-enter-active,
+.card-leave-active {
+  transition: 0.6s all ease;
+}
+
+.card-enter-from {
+  transform: translatex(-100%);
+}
+
+.card-leave-to {
+  transform: translateX(100%);
 }
 
 .container {
@@ -67,6 +131,23 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
   max-width: 480px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  input {
+    width: 100%;
+  }
+}
+
 .cart-title {
   display: grid;
   width: 100%;
@@ -75,7 +156,7 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
   margin-bottom: 5px;
   gap: 10px;
   grid-template-columns: 1fr 1fr 20px 1fr 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -86,6 +167,7 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
   gap: 10px;
   height: 300px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .total {
@@ -107,6 +189,23 @@ button {
   border: 1px solid $slate-400;
   border-radius: 5px;
   box-shadow: $box-shadow;
+}
+
+@media (min-width: 480px) {
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+
+    input {
+      width: 50%;
+    }
+
+    .bigger-divided {
+      width: 75%;
+    }
+  }
 }
 
 @media (min-width: 1024px) {

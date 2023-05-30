@@ -4,7 +4,6 @@ article {
   @include flexCenter;
   flex-direction: column;
   background-color: #fff;
-  padding: 5px;
   border-radius: 10px;
   border: 1px solid $slate-300;
 }
@@ -34,7 +33,7 @@ article {
   display: flex;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   box-shadow: $box-shadow;
   object-fit: cover;
 }
@@ -46,7 +45,6 @@ article {
   padding: 2px 0;
   font-size: 12px;
   font-weight: 600;
-  border-radius: 0 0 10px 10px;
   background-color: #00000088;
   color: #fff;
   text-align: center;
@@ -96,28 +94,27 @@ article {
 
 button {
   @include flexCenter;
-  background: $green-500;
   width: 100%;
   padding: 10px;
   gap: 5px;
-  font-weight: 600;
   font-size: 14px;
+  font-weight: 600;
   letter-spacing: 1px;
   border-radius: 5px;
+  background: $green-500;
   color: #fff;
 
   .cart-icon {
     font-size: 16px;
   }
 
-  &:disabled:hover {
-    background-color: $slate-400;
-    cursor: default;
-  }
-
   &:hover {
     background-color: $green-600;
     box-shadow: $box-shadow;
+  }
+
+  &:disabled:hover {
+    background-color: $green-500;
   }
 }
 

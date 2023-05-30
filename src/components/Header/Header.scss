@@ -9,7 +9,7 @@ header {
   height: 117px;
   padding: 15px 10px;
   margin: 0 0 20px;
-  background-color: $stone-100;
+  background-color: $gray-200;
   border-bottom: 1px solid $gray-300;
   z-index: 1;
 }
@@ -28,8 +28,8 @@ img {
 }
 
 input {
-  height: 35px;
   width: 60%;
+  height: 35px;
 }
 
 .actions {
@@ -59,9 +59,9 @@ input {
   }
 
   input {
+    max-width: 300px;
     min-width: 250px;
     width: 100%;
-    max-width: 300px;
     margin: 0 10px;
   }
 }

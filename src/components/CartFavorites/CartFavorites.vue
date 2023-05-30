@@ -6,7 +6,5 @@ const { state } = useStore();
 </script>
 
 <template>
-  <Sidebar :items="state.favoriteProducts" :title="'Meus Favoritos'"/>
+  <Sidebar :items="state.favoriteProducts" :title="'Meus Favoritos'" />
 </template>
-
-<style src="./CartFavorites.scss" scoped />

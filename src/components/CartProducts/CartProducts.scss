@@ -11,11 +11,11 @@ button {
   width: 100%;
   font-size: 16px;
   font-weight: 600;
-  background-color: $slate-100;
-  color: $slate-800;
-  padding: 10px;
   margin-top: 10px;
+  padding: 10px;
   border: 1px solid $slate-400;
   border-radius: 5px;
+  color: $slate-800;
+  background-color: $slate-100;
   box-shadow: $box-shadow;
 }

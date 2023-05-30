@@ -19,10 +19,10 @@
 }
 
 .cart-card {
-  border: 1px solid $slate-300;
-  background: #fff;
   padding: 5px;
+  background: #fff;
   border-radius: 5px;
+  border: 1px solid $slate-300;
 
   h3 {
     font-size: 12px;
@@ -48,8 +48,15 @@
 
   .icons {
     font-size: 18px;
-    color: $slate-500;
     cursor: pointer;
+
+    &.cart {
+      color: $green-500;
+    }
+
+    &.trash {
+      color: $slate-500;
+    }
   }
 }
 

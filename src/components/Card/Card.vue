@@ -16,7 +16,7 @@ const processProps = () => {
   movieProduct.image = import.meta.env.VITE_IMAGE_URL + movie.poster_path;
   movieProduct.rate = Math.floor(movie.vote_average);
   movieProduct.price = formatPrice(movieProduct.rate * 5);
-  movieProduct.date = convertDate(movie.release_date);
+  movieProduct.date = (movie.release_date && convertDate(movie.release_date)) || "-";
   movieProduct.genre = store.getters.findGenreById(movie.genre_ids[0]);
 };
 
@@ -68,7 +68,9 @@ onMounted(() => {
       </div>
       <p class="price">{{ movieProduct.price }}</p>
     </div>
-    <button @click="addToCart" :disabled="Number(movieProduct.rate) == 0"><Cart class="cart-icon" /> Adicionar</button>
+    <button @click="addToCart" :disabled="Number(movieProduct.rate) == 0">
+      <Cart class="cart-icon" /> Adicionar
+    </button>
   </article>
 </template>
 

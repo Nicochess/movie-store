@@ -1,6 +1,6 @@
 <script setup>
-import Fallback from "@/assets/fallback.png";
 import { ref } from "vue";
+import Fallback from "@/assets/fallback.png";
 
 const props = defineProps({
   src: String,

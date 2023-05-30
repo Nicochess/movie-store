@@ -1,12 +1,12 @@
 .overlay {
   @include flexCenter;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.4);
-  height: 100vh;
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  height: 100vh;
+  padding: 10px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
   z-index: 2;
 }
 
@@ -15,8 +15,8 @@
   flex-direction: column;
   justify-content: space-between;
   height: 30vh;
-  width: 100%;
   max-width: 450px;
+  width: 100%;
   padding: 20px;
   border-radius: 5px;
   border: 1px solid $slate-500;
@@ -24,8 +24,9 @@
   box-shadow: $box-shadow;
 
   h5 {
-    color: $slate-900;
     font-size: 24px;
+    color: $slate-900;
+    text-transform: capitalize;
   }
 
   p {

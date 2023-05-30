@@ -3,14 +3,27 @@
   background-color: transparent;
 }
 
+.card-enter-active,
+.card-leave-active {
+  transition: 0.6s all ease;
+}
+
+.card-enter-from {
+  transform: translateX(-100%);
+}
+
+.card-leave-to {
+  transform: translateX(100%);
+}
+
 aside {
   position: fixed;
-  width: 100%;
-  padding: 20px 10px;
-  background-color: #fff;
-  height: calc(100vh - 117px);
   top: 117px;
   right: 0;
+  width: 100%;
+  height: calc(100vh - 117px);
+  padding: 20px 10px;
+  background-color: #fff;
   z-index: 1;
 }
 
@@ -40,15 +53,16 @@ aside {
   gap: 10px;
   flex: 1;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media (min-width: 480px) {
   aside {
     top: 61px;
     height: calc(100vh - 61px);
-    width: 40%;
-    min-width: 400px;
     max-width: 420px;
+    min-width: 400px;
+    width: 40%;
     border-left: 1px solid $slate-300;
   }
 }
