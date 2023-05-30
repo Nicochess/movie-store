@@ -1,7 +1,20 @@
-# Vue 3 + Vite
+# MovieFlix
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+O projeto foi desenvolvido utilizando Vue 3, Vite, Axios, Mdue para consumo de Icons dentro da aplicação e Vue The Mask para aplicação de máscara nos formulários.
+Para fazer o setup do projeto é necessário que você tenha uma conta no TMDB ***(https://www.themoviedb.org/settings/api)*** e que siga a criação do .env com base no arquivo de exemplo.
+```bash
+VITE_API_KEY=<YOUR_API_KEY>
+VITE_BASE_URL=https://api.themoviedb.org/3/
+VITE_IMAGE_URL=https://image.tmdb.org/t/p/w500/
+```
 
-## Recommended IDE Setup
+Feito a configuração do .env estamos prontos para instalar os pacotes e iniciar o projeto.
+## Para instalar os pacotes:
+```bash
+npm install
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Para iniciar o projeto:
+```bash
+npm run dev
+```
