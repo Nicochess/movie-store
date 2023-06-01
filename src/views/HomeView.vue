@@ -4,7 +4,8 @@ import { popularMovies, queryMovies } from "@/services/movieService.js";
 import { watch, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import EmptyResult from "@/components/EmptyResult/EmptyResult.vue";
-import { SearchWeb } from "mdue";
+import { SearchWeb, Loading } from "mdue";
+import { scrollToTop } from "@/utils";
 
 const store = useStore();
 const movies = ref([]);
@@ -26,13 +27,6 @@ const getMoviesBySearch = async (query) => {
 
   const { results } = await queryMovies(query);
   movies.value = results;
-};
-
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
 };
 
 watch(search, (newValue) => {
@@ -64,9 +58,8 @@ const handleScroll = async () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  getPopularMovies();
 });
-getPopularMovies();
-
 </script>
 
 <template>

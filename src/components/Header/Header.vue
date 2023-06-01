@@ -4,6 +4,7 @@ import { RouterLink } from "vue-router";
 import IconButton from "../IconButton/IconButton.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import { scrollToTop } from "@/utils";
 
 const { state, commit } = useStore();
 
@@ -24,16 +25,18 @@ const handleModal = (payload) => {
 
 <template>
   <header>
-    <RouterLink to="/" class="image-container">
+    <RouterLink to="/" class="image-container" @click="scrollToTop">
       <img src="@/assets/storeIcon.png" />
     </RouterLink>
 
-    <input placeholder="Busque por um clássico" v-model="search" />
+    <input placeholder="Busque por um clássico" type="search" v-model="search" />
     <div class="actions">
-      <IconButton :amount="favoriteItems" @click="handleModal('favorites')">
+      <IconButton :amount="favoriteItems" @click="handleModal('favorites')"
+        :style="state.isModal == 'favorites' && { 'background-color': '#DDD' }">
         <Heart class="heart" />
       </IconButton>
-      <IconButton :amount="cartItems" @click="handleModal('cart')">
+      <IconButton :amount="cartItems" @click="handleModal('cart')"
+        :style="state.isModal == 'cart' && { 'background-color': '#DDD' }">
         <Cart class="cart" />
       </IconButton>
     </div>

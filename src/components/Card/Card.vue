@@ -45,15 +45,8 @@ onMounted(() => {
 <template>
   <article>
     <div class="image-container">
-      <Heart
-        :class="`${isFavorite && 'active'} favorite`"
-        @click="handleFavorite"
-      />
-      <ImageFallback
-        class="banner"
-        :src="movieProduct.image"
-        :alt="movieProduct.title"
-      />
+      <Heart :class="`${isFavorite && 'active'} favorite`" @click="handleFavorite" />
+      <ImageFallback class="banner" :src="movieProduct.image" :alt="movieProduct.title" />
       <p class="date">{{ movieProduct.date }}</p>
     </div>
     <div class="details">
@@ -64,7 +57,7 @@ onMounted(() => {
           <span class="star-text">{{ movieProduct.rate }}</span>
         </div>
 
-        <p>{{ movieProduct.genre && movieProduct.genre.name }}</p>
+        <p class="genre">{{ movieProduct.genre && movieProduct.genre.name }}</p>
       </div>
       <p class="price">{{ movieProduct.price }}</p>
     </div>

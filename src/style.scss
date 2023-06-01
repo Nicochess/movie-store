@@ -40,11 +40,28 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
-  background-color: transparent;
+  width: 4px;
+  background-color: $slate-200;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: $slate-400;
   border-radius: 5px;
+}
+
+.loading {
+  width: 100%;
+  font-size: 40px;
+  color: #000;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

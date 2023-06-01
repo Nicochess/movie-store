@@ -4,12 +4,12 @@ import { useStore } from "vuex";
 import Header from "./components/Header/Header.vue";
 import CartProducts from "./components/CartProducts/CartProducts.vue";
 import CartFavorites from "./components/CartFavorites/CartFavorites.vue";
-import { Suspense, TransitionGroup } from "vue";
+import { TransitionGroup, Transition } from "vue";
+import Toast from "./components/Toast/Toast.vue";
 
 const { dispatch, state, commit } = useStore();
 const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
-const favoriteProducts =
-  JSON.parse(localStorage.getItem("favoritesProducts")) || [];
+const favoriteProducts = JSON.parse(localStorage.getItem("favoritesProducts")) || [];
 
 commit("setCart", cartProducts);
 commit("setFavorites", favoriteProducts);
@@ -23,14 +23,10 @@ dispatch("fetchGenreList");
       <CartProducts v-if="state.isModal == 'cart'" />
       <CartFavorites v-if="state.isModal == 'favorites'" />
     </TransitionGroup>
-    <Suspense>
-      <template #default>
-        <RouterView />
-      </template>
-      <template #fallback>
-        LOADING
-      </template>
-    </Suspense>
+    <Transition name="up">
+      <Toast v-if="state.toastMessage" :message="state.toastMessage" />
+    </Transition>
+    <RouterView />
   </div>
 </template>
 
@@ -46,5 +42,18 @@ dispatch("fetchGenreList");
 
 .list-leave-to {
   transform: translateX(100%);
+}
+
+.up-enter-active,
+.up-leave-active {
+  transition: 0.2s all ease;
+}
+
+.up-enter-from {
+  transform: translateY(100%);
+}
+
+.up-leave-to {
+  transform: translateY(150%);
 }
 </style>

@@ -59,7 +59,7 @@ article {
 }
 
 .title {
-  font-size: 16px;
+  font-size: 14px;
   height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,6 +84,10 @@ article {
     font-weight: 700;
     font-size: 14px;
   }
+}
+
+.genre {
+  font-size: 12px;
 }
 
 .price {

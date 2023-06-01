@@ -8,6 +8,7 @@ const store = createStore({
     cartProducts: [],
     favoriteProducts: [],
     isModal: "",
+    toastMessage: "",
   },
   mutations: {
     setGenreList(state, payload) {
@@ -25,6 +26,9 @@ const store = createStore({
     setModal(state, payload) {
       state.isModal = payload;
     },
+    setToastMessage(state, payload) {
+      state.toastMessage = payload;
+    },
   },
   actions: {
     fetchGenreList: async ({ commit }) => {
@@ -33,6 +37,7 @@ const store = createStore({
     },
     addToCart: ({ dispatch, state }, payload) => {
       const cart = [payload, ...state.cartProducts];
+      dispatch("emitToastMessage", "Produto Adicionado");
       dispatch("commitCart", cart);
     },
     commitCart: ({ commit, dispatch }, cart) => {
@@ -63,6 +68,13 @@ const store = createStore({
     },
     setCartPersistence: ({ state }) => {
       localStorage.setItem("cartProducts", JSON.stringify(state.cartProducts));
+    },
+    commitToastMessage: ({ commit }, payload) => {
+      commit("setToastMessage", payload);
+      setTimeout(() => commit("setToastMessage", ""), 1500);
+    },
+    emitToastMessage: ({ dispatch }, payload) => {
+      dispatch("commitToastMessage", payload);
     },
   },
   getters: {
