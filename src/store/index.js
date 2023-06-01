@@ -9,6 +9,7 @@ const store = createStore({
     favoriteProducts: [],
     isModal: "",
     toastMessage: "",
+    isLoading: false,
   },
   mutations: {
     setGenreList(state, payload) {
@@ -29,6 +30,9 @@ const store = createStore({
     setToastMessage(state, payload) {
       state.toastMessage = payload;
     },
+    setLoading(state, payload) {
+      state.isLoading = payload
+    }
   },
   actions: {
     fetchGenreList: async ({ commit }) => {

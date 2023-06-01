@@ -58,14 +58,16 @@ const handleScroll = async () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
-  getPopularMovies();
 });
+
+getPopularMovies();
 </script>
 
 <template>
   <div class="card-list" ref="scrollComponent">
-    <Card v-for="movie in movies" :key="movie.id" :movie="movie" />
-    <EmptyResult v-if="!movies.length">
+    <Loading class="loading" v-if="store.state.isLoading" />
+    <Card v-for="movie in movies" :key="movie.id" :movie="movie" v-if="!store.state.isLoading"/>
+    <EmptyResult v-if="!movies.length && !store.state.isLoading">
       <SearchWeb />
     </EmptyResult>
   </div>
