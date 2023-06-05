@@ -20,11 +20,11 @@ MoviesClient.interceptors.request.use((config) => {
 
 MoviesClient.interceptors.response.use(
   (response) => {
-    store.commit("setLoading");
+    store.commit("setLoading", false);
     return response;
   },
   (error) => {
-    store.dispatch("setLoading");
+    store.dispatch("setLoading", false);
     throw error;
   }
 );

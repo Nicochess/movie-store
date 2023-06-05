@@ -65,12 +65,12 @@ getPopularMovies();
 
 <template>
   <div class="card-list" ref="scrollComponent">
-    <Loading class="loading" v-if="store.state.isLoading" />
-    <Card v-for="movie in movies" :key="movie.id" :movie="movie" v-if="!store.state.isLoading"/>
+    <Card v-for="movie in movies" :key="movie.id" :movie="movie" />
     <EmptyResult v-if="!movies.length && !store.state.isLoading">
       <SearchWeb />
     </EmptyResult>
   </div>
+  <Loading class="loading" v-if="store.state.isLoading" />
 </template>
 
 <style scoped>
