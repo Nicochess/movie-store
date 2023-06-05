@@ -58,9 +58,9 @@ const handleScroll = async () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  getPopularMovies();
 });
 
-getPopularMovies();
 </script>
 
 <template>
