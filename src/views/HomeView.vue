@@ -1,7 +1,7 @@
 <script setup>
 import Card from "@/components/Card/Card.vue";
 import { popularMovies, queryMovies } from "@/services/movieService.js";
-import { watch, ref, computed, onMounted } from "vue";
+import { watch, ref, computed, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import EmptyResult from "@/components/EmptyResult/EmptyResult.vue";
 import { SearchWeb, Loading } from "mdue";
@@ -61,11 +61,19 @@ onMounted(() => {
   getPopularMovies();
 });
 
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
   <div class="card-list" ref="scrollComponent">
-    <Card v-for="movie in movies" :key="movie.id" :movie="movie" v-if="store.state.genreList.length" />
+    <Card
+      v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+      v-if="store.state.genreList.length"
+    />
     <EmptyResult v-if="!movies.length && !store.state.isLoading">
       <SearchWeb />
     </EmptyResult>
