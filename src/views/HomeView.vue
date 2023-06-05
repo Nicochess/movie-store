@@ -65,7 +65,7 @@ onMounted(() => {
 
 <template>
   <div class="card-list" ref="scrollComponent">
-    <Card v-for="movie in movies" :key="movie.id" :movie="movie" />
+    <Card v-for="movie in movies" :key="movie.id" :movie="movie" v-if="store.state.genreList.length" />
     <EmptyResult v-if="!movies.length && !store.state.isLoading">
       <SearchWeb />
     </EmptyResult>
