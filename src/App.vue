@@ -8,11 +8,11 @@ import { TransitionGroup, Transition } from "vue";
 import Toast from "./components/Toast/Toast.vue";
 
 const { dispatch, state, commit } = useStore();
-const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
-const favoriteProducts = JSON.parse(localStorage.getItem("favoritesProducts")) || [];
+const products = JSON.parse(localStorage.getItem("cartProducts")) || [];
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-commit("setCart", cartProducts);
-commit("setFavorites", favoriteProducts);
+commit("setCart", products);
+commit("setFavorites", favorites);
 dispatch("fetchGenreList");
 </script>
 
@@ -24,7 +24,7 @@ dispatch("fetchGenreList");
       <CartFavorites v-if="state.isModal == 'favorites'" />
     </TransitionGroup>
     <Transition name="up">
-      <Toast v-if="state.toastMessage" :message="state.toastMessage" />
+      <Toast v-if="state.Toast.message" :message="state.Toast.message" />
     </Transition>
     <RouterView />
   </div>

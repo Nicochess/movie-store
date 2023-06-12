@@ -11,15 +11,15 @@ const { items, title, isCart } = defineProps({
   isCart: Boolean,
 });
 
-const { commit } = useStore();
+const { commit, dispatch } = useStore();
 
 const handleDeleteAll = () => {
   if (isCart) {
-    commit("setCart", []);
+    dispatch("commitCart", []);
     return;
   }
 
-  commit("setFavorites", []);
+  dispatch("commitFavorites", []);
 };
 </script>
 

@@ -9,7 +9,7 @@ const { movie } = defineProps({
   movie: Object,
 });
 
-const store = useStore();
+const { getters, dispatch } = useStore();
 const movieProduct = reactive({ ...movie, price: 10 });
 
 const processProps = () => {
@@ -17,24 +17,24 @@ const processProps = () => {
   movieProduct.rate = Math.floor(movie.vote_average);
   movieProduct.price = formatPrice(movieProduct.rate * 5);
   movieProduct.date = (movie.release_date && convertDate(movie.release_date)) || "-";
-  movieProduct.genre = store.getters.findGenreById(movie.genre_ids[0]);
+  movieProduct.genre = getters.findGenreById(movie.genre_ids[0]);
 };
 
 const isFavorite = computed(() =>
-  store.getters.findFavoriteById(movieProduct.id)
+  getters.findFavoriteById(movieProduct.id)
 );
 
 const addToCart = () => {
-  store.dispatch("addToCart", movieProduct);
+  dispatch("addToCart", movieProduct);
 };
 
 const handleFavorite = () => {
   if (isFavorite.value) {
-    store.dispatch("removeFromFavorites", movieProduct);
+    dispatch("removeFromFavorites", movieProduct);
     return;
   }
 
-  store.dispatch("addToFavorites", movieProduct);
+  dispatch("addToFavorites", movieProduct);
 };
 
 onMounted(() => {

@@ -6,5 +6,5 @@ const { state } = useStore();
 </script>
 
 <template>
-  <Sidebar :items="state.favoriteProducts" :title="'Meus Favoritos'" />
+  <Sidebar :items="state.Favorites.products" :title="'Meus Favoritos'" />
 </template>

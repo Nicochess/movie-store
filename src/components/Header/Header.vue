@@ -8,8 +8,8 @@ import { scrollToTop } from "@/utils";
 
 const { state, commit } = useStore();
 
-const cartItems = computed(() => state.cartProducts.length);
-const favoriteItems = computed(() => state.favoriteProducts.length);
+const cartItems = computed(() => state.Cart.products.length);
+const favorites = computed(() => state.Favorites.products.length);
 const search = computed({
   get: () => state.search,
   set: (value) => commit("setSearch", value),
@@ -31,7 +31,7 @@ const handleModal = (payload) => {
 
     <input placeholder="Busque por um clássico" type="search" v-model="search" />
     <div class="actions">
-      <IconButton :amount="favoriteItems" @click="handleModal('favorites')"
+      <IconButton :amount="favorites" @click="handleModal('favorites')"
         :style="state.isModal == 'favorites' && { 'background-color': '#DDD' }">
         <Heart class="heart" />
       </IconButton>

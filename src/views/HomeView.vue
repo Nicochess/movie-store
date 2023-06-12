@@ -7,9 +7,9 @@ import EmptyResult from "@/components/EmptyResult/EmptyResult.vue";
 import { SearchWeb, Loading } from "mdue";
 import { scrollToTop } from "@/utils";
 
-const store = useStore();
+const { state } = useStore();
 const movies = ref([]);
-const search = computed(() => store.state.search);
+const search = computed(() => state.search);
 const pageCount = ref(1);
 const isLoading = ref(false);
 
@@ -68,17 +68,12 @@ onUnmounted(() => {
 
 <template>
   <div class="card-list" ref="scrollComponent">
-    <Card
-      v-for="movie in movies"
-      :key="movie.id"
-      :movie="movie"
-      v-if="store.state.genreList.length"
-    />
-    <EmptyResult v-if="!movies.length && !store.state.isLoading">
+    <Card v-for="movie in movies" :key="movie.id" :movie="movie" v-if="state.Genres.list.length" />
+    <EmptyResult v-if="!movies.length && !state.isLoading">
       <SearchWeb />
     </EmptyResult>
   </div>
-  <Loading class="loading" v-if="store.state.isLoading" />
+  <Loading class="loading" v-if="state.isLoading" />
 </template>
 
 <style scoped>
