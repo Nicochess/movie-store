@@ -28,11 +28,7 @@ const totalCart = computed(() => formatPrice(getters.totalCart));
         <p>Total:</p>
         <p>{{ totalCart }}</p>
       </div>
-      <button
-        @click="goToCheckout"
-        :disabled="!renderList.length"
-        class="checkout"
-      >
+      <button @click="goToCheckout" :disabled="!renderList.length" class="checkout">
         Finalizar
       </button>
     </template>

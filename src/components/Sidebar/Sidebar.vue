@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import HorizontalCard from "../HorizontalCard/HorizontalCard.vue";
 import EmptyResult from "../EmptyResult/EmptyResult.vue";
 import { CartOff, HeartBroken } from "mdue";
-import { TransitionGroup } from "vue";
+import { TransitionGroup, ref } from "vue";
 
 const { items, title, isCart } = defineProps({
   items: Array,
@@ -11,7 +11,7 @@ const { items, title, isCart } = defineProps({
   isCart: Boolean,
 });
 
-const { commit, dispatch } = useStore();
+const { dispatch } = useStore();
 
 const handleDeleteAll = () => {
   if (isCart) {
@@ -21,6 +21,11 @@ const handleDeleteAll = () => {
 
   dispatch("commitFavorites", []);
 };
+
+const transitionEnded = ref(false)
+const handleTransition = () => {
+  transitionEnded.value = !transitionEnded.value
+}
 </script>
 
 <template>
@@ -30,15 +35,10 @@ const handleDeleteAll = () => {
       <span @click="handleDeleteAll">Esvaziar</span>
     </div>
     <div class="sidebar-content">
-      <TransitionGroup name="card">
-        <HorizontalCard
-          v-for="item in items"
-          :key="item.id"
-          :movie="item"
-          :isCart="isCart"
-        />
+      <TransitionGroup name="card" @afterLeave="handleTransition" @beforeLeave="handleTransition">
+        <HorizontalCard v-for="item in items" :key="item.id" :movie="item" :isCart="isCart" />
       </TransitionGroup>
-      <EmptyResult v-if="!items.length">
+      <EmptyResult v-if="!items.length && !transitionEnded">
         <CartOff v-if="isCart" />
         <HeartBroken v-else />
       </EmptyResult>
